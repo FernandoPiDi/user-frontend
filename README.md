@@ -36,8 +36,8 @@ La aplicación permite a los usuarios visualizar una lista completa de perfiles,
 1. Clonar el repositorio:
 
 ```bash
-git clone <url-del-repositorio>
-cd full-and-fast
+git clone git@github.com:FernandoPiDi/user-frontend.git
+cd user-frontend
 ```
 
 2. Instalar dependencias:
