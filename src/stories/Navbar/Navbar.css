@@ -1,0 +1,785 @@
+.navbar {
+  background: linear-gradient(
+    90deg,
+    rgba(10, 10, 30, 0.95) 0%,
+    rgba(20, 20, 60, 0.95) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(79, 70, 229, 0.15);
+  padding: 0.6rem 0;
+  width: 100%;
+  position: relative;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.navbar-glow-effect {
+  position: absolute;
+  top: -50%;
+  left: -10%;
+  width: 120%;
+  height: 200%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(79, 70, 229, 0.15) 0%,
+    rgba(79, 70, 229, 0) 70%
+  );
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.5;
+  animation: glow-pulse 8s infinite alternate;
+}
+
+@keyframes glow-pulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}
+
+.navbar::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(79, 70, 229, 0.7),
+    transparent
+  );
+  z-index: 1;
+}
+
+.navbar.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.navbar-brand {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding: 0.3rem 0;
+  margin-right: 3.5rem;
+}
+
+.navbar-brand-compact {
+  margin-right: 0;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: 0 0 10px rgba(79, 70, 229, 0.5);
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.logo-text-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.logo-underline {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.logo-text:hover .logo-underline {
+  transform: scaleX(1);
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.logo-link img {
+  height: 32px;
+  width: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(79, 70, 229, 0.3) 0%,
+    rgba(79, 70, 229, 0) 70%
+  );
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.logo-link:hover .logo-glow {
+  opacity: 1;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.navbar-item {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.3rem 0;
+  position: relative;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+  transition: border-radius 0.3s ease;
+}
+
+.navbar-item::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.navbar-item-highlight {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 120%;
+  height: 130%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(79, 70, 229, 0.15) 0%,
+    rgba(79, 70, 229, 0) 70%
+  );
+  border-radius: 4px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.navbar-item:hover {
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.navbar-item:hover::before {
+  width: 100%;
+}
+
+.navbar-item:hover .navbar-item-highlight {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.navbar-item.active {
+  color: #ffffff;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.navbar-item.active::before {
+  width: 100%;
+  background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+  height: 3px;
+}
+
+.navbar-search {
+  margin-left: 2rem;
+}
+
+/* estilos para la barra de busqueda integrada en el navbar */
+.navbar-search-inline {
+  flex: 0 1 auto;
+  margin: 0 10px;
+  max-width: 250px;
+  width: auto;
+}
+
+.navbar-search-inline .buscar-container {
+  margin: 0;
+  max-width: 100%;
+}
+
+.navbar-search-inline .buscar-input {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.navbar-search-inline .buscar-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.navbar-search-inline .buscar-input:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 15px rgba(79, 70, 229, 0.2);
+}
+
+.navbar-search-inline .buscar-icon,
+.navbar-search-inline .buscar-clear {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.navbar-search-inline .buscar-clear:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* tema claro para la barra de busqueda integrada */
+.theme-light .navbar-search-inline .buscar-input {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #1f2937;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.theme-light .navbar-search-inline .buscar-input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.theme-light .navbar-search-inline .buscar-input:focus {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(79, 70, 229, 0.3);
+}
+
+.theme-light .navbar-search-inline .buscar-icon,
+.theme-light .navbar-search-inline .buscar-clear {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.theme-light .navbar-search-inline .buscar-clear:hover {
+  background-color: rgba(79, 70, 229, 0.1);
+  color: #4f46e5;
+}
+
+.navbar-user {
+  margin-left: 2rem;
+}
+
+.user-menu-button {
+  background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(79, 70, 229, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: border-radius 0.3s ease;
+}
+
+.user-menu-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+}
+
+.user-menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* boton de menu movil */
+.mobile-menu-button {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+  transition: all 0.3s ease;
+  transition: border-radius 0.3s ease;
+}
+
+.mobile-menu-button span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* animacion para el boton de menu cuando esta abierto */
+.mobile-menu-button.open span:first-child {
+  transform: translateY(9.5px) rotate(45deg);
+}
+
+.mobile-menu-button.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-button.open span:last-child {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+/* animacion para el boton de menu cuando la busqueda esta activa */
+.mobile-menu-button.search-active span:first-child {
+  transform: translateY(9.5px) rotate(45deg);
+}
+
+.mobile-menu-button.search-active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-button.search-active span:last-child {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+/* contenedor de busqueda movil */
+.mobile-search-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 10, 30, 0.95) 0%,
+    rgba(20, 20, 60, 0.95) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 9;
+  animation: slideDown 0.3s ease forwards;
+  border-bottom: 1px solid rgba(79, 70, 229, 0.3);
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-search-input {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* tema claro para la busqueda movil */
+.theme-light .mobile-search-container {
+  background: linear-gradient(
+    90deg,
+    rgba(240, 240, 255, 0.95) 0%,
+    rgba(245, 245, 255, 0.95) 100%
+  );
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* tema oscuro */
+.theme-dark {
+  background: linear-gradient(
+    90deg,
+    rgba(10, 10, 30, 0.95) 0%,
+    rgba(20, 20, 60, 0.95) 100%
+  );
+}
+
+/* tema claro */
+.theme-light {
+  background: linear-gradient(
+    90deg,
+    rgba(240, 240, 255, 0.95) 0%,
+    rgba(245, 245, 255, 0.95) 100%
+  );
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 0 15px rgba(79, 70, 229, 0.1);
+}
+
+.theme-light .navbar-brand a {
+  color: #1f2937;
+  text-shadow: 0 0 10px rgba(79, 70, 229, 0.2);
+}
+
+.theme-light .navbar-item {
+  color: #4b5563;
+}
+
+.theme-light .navbar-item:hover {
+  color: #1f2937;
+  text-shadow: none;
+}
+
+.theme-light .mobile-menu-button span {
+  background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+}
+
+/* estilos responsivos */
+@media (max-width: 768px) {
+  .navbar-container {
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .navbar-brand {
+    margin-right: 0;
+  }
+
+  .navbar-brand-compact .logo-text-inner {
+    font-size: 0.9em;
+  }
+
+  /* estilos para la barra de busqueda integrada en moviles */
+  .navbar-search-inline {
+    flex: 0 1 auto;
+    margin: 0 10px;
+    max-width: 200px;
+    width: auto;
+  }
+
+  .navbar-search-inline .buscar-input {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    padding-right: 40px;
+  }
+
+  .navbar-search-inline .buscar-container {
+    max-width: 100%;
+  }
+
+  /* estilos para el menu de navegacion */
+  .navbar-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background: linear-gradient(
+      135deg,
+      rgba(10, 10, 30, 0.98) 0%,
+      rgba(20, 20, 60, 0.98) 100%
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5rem 2rem 2rem;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    gap: 1.5rem;
+    overflow-y: auto;
+  }
+
+  .navbar-menu.mobile-open {
+    right: 0;
+  }
+
+  .mobile-menu-button {
+    display: flex;
+  }
+
+  .navbar-item {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 0;
+  }
+
+  .navbar-search {
+    width: 100%;
+    margin: 1rem 0 0;
+    display: block;
+  }
+
+  .navbar-user {
+    width: 100%;
+    margin: 1rem 0 0;
+  }
+
+  .user-menu-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* eliminar estilos para el contenedor de busqueda movil que ya no se usa */
+  .mobile-search-container {
+    display: none;
+  }
+
+  .navbar-theme-toggle {
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .theme-toggle-button {
+    padding: 0.4rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.25rem;
+  }
+
+  /* ajustes para la barra de busqueda en pantallas muy pequeñas */
+  .navbar-search-inline {
+    margin: 0 8px;
+    max-width: 180px;
+    width: auto;
+  }
+
+  .navbar-search-inline .buscar-input {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    padding-right: 35px;
+  }
+
+  .navbar-search-inline .buscar-icon,
+  .navbar-search-inline .buscar-clear {
+    right: 10px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .user-menu-text {
+    display: none;
+  }
+
+  .user-menu-button {
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  /* Hacer el botón de menú más pequeño */
+  .mobile-menu-button {
+    width: 24px;
+    height: 18px;
+  }
+
+  .mobile-menu-button span {
+    height: 2px;
+  }
+
+  .mobile-menu-button.open span:first-child,
+  .mobile-menu-button.search-active span:first-child {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .mobile-menu-button.open span:last-child,
+  .mobile-menu-button.search-active span:last-child {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+@media (max-width: 480px) {
+  /* ajustes para la barra de busqueda en pantallas extremadamente pequeñas */
+  .navbar-search-inline {
+    max-width: 150px;
+    width: auto;
+  }
+
+  .navbar-search-inline .buscar-input {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    padding-right: 30px;
+  }
+
+  .navbar-brand {
+    font-size: 1.1rem;
+  }
+
+  .navbar-theme-toggle {
+    position: absolute;
+    top: 0.5rem;
+    right: 3.5rem;
+  }
+}
+
+/* estilos para el boton de cambio de tema */
+.navbar-theme-toggle {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.theme-toggle-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s, transform 0.2s;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.theme-toggle-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.theme-toggle-button:active {
+  transform: scale(0.95);
+}
+
+.theme-light .theme-toggle-button {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.theme-light .theme-toggle-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Estilos para el fondo transparente con efecto de desenfoque */
+.navbar.transparent-bg {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-dark.transparent-bg {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Ajustes para diferentes alturas de navbar */
+.navbar {
+  transition: height 0.3s ease;
+}
+
+/* Ajustes para los bordes redondeados */
+.navbar-item,
+.navbar-search .buscar-container,
+.user-menu-button,
+.mobile-menu-button {
+  transition: border-radius 0.3s ease;
+}
+
+/* Mejoras visuales para el efecto de vidrio */
+.transparent-bg .navbar-glow-effect {
+  opacity: 0.15;
+  filter: blur(20px);
+}
+
+.transparent-bg .navbar-item:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.theme-dark.transparent-bg .navbar-item:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.transparent-bg .navbar-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.theme-dark.transparent-bg .navbar-item.active {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Ajustes para el menú de usuario con fondo transparente */
+.transparent-bg .user-menu-button {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-dark.transparent-bg .user-menu-button {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Ajustes para el botón de menú móvil con fondo transparente */
+.transparent-bg .mobile-menu-button {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-dark.transparent-bg .mobile-menu-button {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Ajustes para la barra de búsqueda con fondo transparente */
+.transparent-bg .navbar-search .buscar-input {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.theme-dark.transparent-bg .navbar-search .buscar-input {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #f3f4f6;
+}
+
+.transparent-bg .navbar-search .buscar-input:focus,
+.transparent-bg .navbar-search .buscar-input:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.theme-dark.transparent-bg .navbar-search .buscar-input:focus,
+.theme-dark.transparent-bg .navbar-search .buscar-input:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
