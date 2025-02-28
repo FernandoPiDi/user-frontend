@@ -41,7 +41,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     } else {
       document.documentElement.setAttribute("data-theme", theme);
     }
-  }, []);
+  }, [theme]);
 
   // Función para cambiar entre temas
   const toggleTheme = () => {
