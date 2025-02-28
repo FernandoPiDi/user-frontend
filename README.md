@@ -1,4 +1,7 @@
-# Full and Fast
+# User Frontend
+
+[![Code Style](https://github.com/FernandoPiDi/user-frontend/actions/workflows/lint.yml/badge.svg)](https://github.com/FernandoPiDi/user-frontend/actions/workflows/lint.yml)
+[![Tests](https://github.com/FernandoPiDi/user-frontend/actions/workflows/tests.yml/badge.svg)](https://github.com/FernandoPiDi/user-frontend/actions/workflows/tests.yml)
 
 Una aplicación web moderna desarrollada con Next.js, React y TypeScript que permite gestionar y visualizar información de usuarios de manera eficiente y elegante. El proyecto implementa una arquitectura basada en componentes reutilizables, con un enfoque en la experiencia de usuario, rendimiento y mantenibilidad del código.
 
