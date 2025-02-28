@@ -2,24 +2,11 @@ name: Frontend Format Check
 
 on:
   push:
-    paths:
-      - "frontend/**.js"
-      - "frontend/**.jsx"
-      - "frontend/**.ts"
-      - "frontend/**.tsx"
   pull_request:
-    paths:
-      - "frontend/**.js"
-      - "frontend/**.jsx"
-      - "frontend/**.ts"
-      - "frontend/**.tsx"
 
 jobs:
   format:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./frontend
 
     steps:
       - uses: actions/checkout@v4
